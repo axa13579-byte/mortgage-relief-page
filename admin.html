@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>房貸減壓諮詢 | 資料統整後台</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="admin-header">
+    <div class="admin-title-group">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
+      </svg>
+      <h1>房貸減壓諮詢 - 客戶資料後台</h1>
+    </div>
+    <a href="index.html" class="back-home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      返回首頁
+    </a>
+  </header>
+
+  <main class="admin-container">
+    
+    <!-- Cloud / Local status alert banner -->
+    <div id="statusBanner" class="alert-banner">
+      <svg id="statusIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+        <line x1="12" y1="9" x2="12" y2="13"></line>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+      <span id="statusMessage">載入資料庫狀態中...</span>
+    </div>
+
+    <!-- Summary Statistics Dashboard Row -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-info">
+          <h3>總諮詢件數</h3>
+          <div class="metric-value" id="stat-total">0</div>
+        </div>
+        <div class="metric-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-info">
+          <h3>平均房貸餘額</h3>
+          <div class="metric-value" id="stat-avg-balance">0 <span style="font-size: 1rem; font-weight: 500;">萬</span></div>
+        </div>
+        <div class="metric-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-info">
+          <h3>平均月繳金額</h3>
+          <div class="metric-value" id="stat-avg-monthly">0 <span style="font-size: 1rem; font-weight: 500;">元</span></div>
+        </div>
+        <div class="metric-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <line x1="12" y1="10" x2="12" y2="10"></line>
+            <line x1="2" y1="10" x2="22" y2="10"></line>
+          </svg>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-info">
+          <h3>熱門房產縣市</h3>
+          <div class="metric-value" id="stat-top-region">-</div>
+        </div>
+        <div class="metric-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls / Filters -->
+    <section class="controls-card">
+      <div class="controls-grid">
+        <div class="filters-group">
+          <!-- Text Search -->
+          <div class="search-input-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="searchInput" placeholder="搜尋姓名、手機號碼...">
+          </div>
+
+          <!-- Region Filter -->
+          <select id="filterRegion" class="filter-select">
+            <option value="">全部縣市</option>
+            <!-- Generated dynamically -->
+          </select>
+
+          <!-- Status Filter -->
+          <select id="filterStatus" class="filter-select">
+            <option value="">全部狀態</option>
+            <option value="待聯絡">待聯絡</option>
+            <option value="已聯絡">已聯絡</option>
+            <option value="規劃中">規劃中</option>
+            <option value="結案">結案</option>
+          </select>
+
+          <!-- Contact Time Filter -->
+          <select id="filterContact" class="filter-select">
+            <option value="">全部聯絡時段</option>
+            <option value="隨時皆可">隨時皆可</option>
+            <option value="上午 (09:00 - 12:00)">上午</option>
+            <option value="中午 (12:00 - 14:00)">中午</option>
+            <option value="下午 (14:00 - 18:00)">下午</option>
+            <option value="晚上 (18:00 - 21:00)">晚上</option>
+          </select>
+        </div>
+
+        <div class="actions-group">
+          <button id="exportCsvBtn" class="btn-admin btn-export">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            匯出 CSV
+          </button>
+          <button id="clearAllBtn" class="btn-admin btn-clear">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              <line x1="10" y1="11" x2="10" y2="17"></line>
+              <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
+            清除資料
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leads Table -->
+    <section class="table-card">
+      <div class="table-wrapper">
+        <table id="leadsTable">
+          <thead>
+            <tr>
+              <th>填寫時間</th>
+              <th>姓名</th>
+              <th>手機</th>
+              <th>房屋所在地</th>
+              <th>房貸餘額 (萬)</th>
+              <th>月繳金額 (元)</th>
+              <th>想改善問題</th>
+              <th>聯絡時間</th>
+              <th>狀態</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="leadsTableBody">
+            <!-- Loaded dynamically -->
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Empty state markup -->
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
+        <h3>無諮詢資料</h3>
+        <p>目前尚無符合篩選條件的諮詢紀錄。</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Firebase Script Integration -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+      getFirestore, 
+      collection, 
+      getDocs, 
+      updateDoc, 
+      deleteDoc, 
+      doc, 
+      query, 
+      orderBy 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // 💡 Firebase 設定 (必須與 app.js 相同)
+    const firebaseConfig = {
+      apiKey: "",
+      authDomain: "",
+      projectId: "",
+      storageBucket: "",
+      messagingSenderId: "",
+      appId: ""
+    };
+
+    let db = null;
+    let isFirebaseEnabled = false;
+    let leadsData = []; // 記憶體中的諮詢紀錄
+
+    // 1. 初始化資料庫狀態
+    const setupDatabase = () => {
+      const banner = document.getElementById('statusBanner');
+      const icon = document.getElementById('statusIcon');
+      const message = document.getElementById('statusMessage');
+
+      if (firebaseConfig.projectId && firebaseConfig.projectId !== "") {
+        try {
+          const app = initializeApp(firebaseConfig);
+          db = getFirestore(app);
+          isFirebaseEnabled = true;
+
+          banner.classList.add('firebase-active');
+          icon.innerHTML = '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>';
+          message.textContent = "已連結 Cloud Firestore 雲端資料庫。資料將與雲端即時同步。";
+          console.log("Admin panel linked to Firebase successfully.");
+        } catch (e) {
+          console.error("Firebase initialization error:", e);
+          fallbackToLocal(banner, icon, message);
+        }
+      } else {
+        fallbackToLocal(banner, icon, message);
+      }
+    };
+
+    const fallbackToLocal = (banner, icon, message) => {
+      isFirebaseEnabled = false;
+      banner.classList.remove('firebase-active');
+      icon.innerHTML = '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>';
+      message.innerHTML = "⚠️ <strong>本地儲存模式：</strong>目前讀取瀏覽器 LocalStorage。若要啟用雲端同步，請在 <code>app.js</code> 與 <code>admin.html</code> 中配置您的 Firebase 金鑰。";
+    };
+
+    // 2. 獲取數據資料
+    const fetchLeads = async () => {
+      leadsData = [];
+      if (isFirebaseEnabled && db) {
+        try {
+          const q = query(collection(db, "leads"), orderBy("timestamp", "desc"));
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach((document) => {
+            const data = document.data();
+            // 轉換 Firebase 伺服器時間為 Date 物件
+            let formattedTime = "未知時間";
+            if (data.timestamp) {
+              const date = data.timestamp.toDate ? data.timestamp.toDate() : new Date(data.timestamp);
+              formattedTime = date.toLocaleString('zh-TW');
+            }
+            leadsData.push({
+              id: document.id,
+              ...data,
+              formattedTime
+            });
+          });
+        } catch (error) {
+          console.error("Error reading Firestore leads:", error);
+          // 雲端讀取失敗，降級使用本地快取
+          loadLeadsFromLocal();
+        }
+      } else {
+        loadLeadsFromLocal();
+      }
+      
+      updateFilters();
+      renderDashboard();
+    };
+
+    const loadLeadsFromLocal = () => {
+      const localData = JSON.parse(localStorage.getItem("mortgage_leads") || "[]");
+      // 依時間降冪排序
+      localData.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      
+      leadsData = localData.map((lead, index) => {
+        let formattedTime = "未知時間";
+        if (lead.timestamp) {
+          formattedTime = new Date(lead.timestamp).toLocaleString('zh-TW');
+        }
+        return {
+          id: lead.id || `local-${index}`,
+          ...lead,
+          formattedTime
+        };
+      });
+    };
+
+    // 3. 更新狀態下拉選單
+    const updateLeadStatus = async (leadId, newStatus) => {
+      if (isFirebaseEnabled && db && !leadId.startsWith('local-')) {
+        try {
+          const leadRef = doc(db, "leads", leadId);
+          await updateDoc(leadRef, { status: newStatus });
+          console.log(`Lead ${leadId} status updated in Firestore to: ${newStatus}`);
+        } catch (error) {
+          console.error("Error updating Firestore status:", error);
+        }
+      } else {
+        // 更新本地 LocalStorage
+        const localLeads = JSON.parse(localStorage.getItem("mortgage_leads") || "[]");
+        const idx = leadsData.findIndex(l => l.id === leadId);
+        if (idx !== -1) {
+          const localIdx = localLeads.findIndex(l => l.phone === leadsData[idx].phone && l.name === leadsData[idx].name);
+          if (localIdx !== -1) {
+            localLeads[localIdx].status = newStatus;
+            localStorage.setItem("mortgage_leads", JSON.stringify(localLeads));
+            console.log(`Lead status updated in LocalStorage to: ${newStatus}`);
+          }
+        }
+      }
+      
+      // 更新記憶體狀態並重新整理看板
+      const lead = leadsData.find(l => l.id === leadId);
+      if (lead) lead.status = newStatus;
+      renderDashboard();
+    };
+
+    // 4. 刪除諮詢件
+    const deleteLead = async (leadId) => {
+      if (!confirm("確定要刪除此筆諮詢紀錄嗎？此動作無法復原。")) return;
+
+      if (isFirebaseEnabled && db && !leadId.startsWith('local-')) {
+        try {
+          await deleteDoc(doc(db, "leads", leadId));
+          console.log(`Lead ${leadId} deleted from Firestore`);
+        } catch (error) {
+          console.error("Error deleting from Firestore:", error);
+        }
+      } else {
+        // 刪除本地 LocalStorage 資料
+        const localLeads = JSON.parse(localStorage.getItem("mortgage_leads") || "[]");
+        const idx = leadsData.findIndex(l => l.id === leadId);
+        if (idx !== -1) {
+          const localIdx = localLeads.findIndex(l => l.phone === leadsData[idx].phone && l.name === leadsData[idx].name);
+          if (localIdx !== -1) {
+            localLeads.splice(localIdx, 1);
+            localStorage.setItem("mortgage_leads", JSON.stringify(localLeads));
+            console.log("Lead deleted from LocalStorage");
+          }
+        }
+      }
+
+      // 重新加載資料與繪製
+      await fetchLeads();
+    };
+
+    // 5. 動態產生篩選條件
+    const updateFilters = () => {
+      const regionFilter = document.getElementById('filterRegion');
+      const currentSelection = regionFilter.value;
+
+      // 取得所有資料中出現過的所有縣市
+      const regions = [...new Set(leadsData.map(l => l.location).filter(Boolean))].sort();
+
+      // 清空除了「全部」以外的選項
+      regionFilter.innerHTML = '<option value="">全部縣市</option>';
+      regions.forEach(r => {
+        const opt = document.createElement('option');
+        opt.value = r;
+        opt.textContent = r;
+        regionFilter.appendChild(opt);
+      });
+
+      // 還原先前的選取
+      if (regions.includes(currentSelection)) {
+        regionFilter.value = currentSelection;
+      }
+    };
+
+    // 6. 統計數據計算與看板渲染
+    const renderDashboard = () => {
+      const tbody = document.getElementById('leadsTableBody');
+      const emptyState = document.getElementById('emptyState');
+      
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+      const region = document.getElementById('filterRegion').value;
+      const status = document.getElementById('filterStatus').value;
+      const contact = document.getElementById('filterContact').value;
+
+      // 篩選符合條件的資料
+      const filtered = leadsData.filter(lead => {
+        const matchSearch = !search || 
+                            lead.name.toLowerCase().includes(search) || 
+                            lead.phone.includes(search);
+        const matchRegion = !region || lead.location === region;
+        const matchStatus = !status || lead.status === status;
+        const matchContact = !contact || lead.contactTime.includes(contact);
+
+        return matchSearch && matchRegion && matchStatus && matchContact;
+      });
+
+      // 計算統計數據
+      const total = filtered.length;
+      let avgBalance = 0;
+      let avgMonthly = 0;
+      let topRegion = "-";
+
+      if (total > 0) {
+        const sumBalance = filtered.reduce((acc, curr) => acc + (curr.balance || 0), 0);
+        const sumMonthly = filtered.reduce((acc, curr) => acc + (curr.monthly || 0), 0);
+        avgBalance = Math.round(sumBalance / total);
+        avgMonthly = Math.round(sumMonthly / total);
+
+        // 熱門縣市計算
+        const regionCounts = filtered.reduce((acc, curr) => {
+          if (curr.location) {
+            acc[curr.location] = (acc[curr.location] || 0) + 1;
+          }
+          return acc;
+        }, {});
+        
+        let maxCount = 0;
+        for (const [reg, count] of Object.entries(regionCounts)) {
+          if (count > maxCount) {
+            maxCount = count;
+            topRegion = reg;
+          }
+        }
+      }
+
+      // 更新指標 UI
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-avg-balance').innerHTML = total > 0 ? `${avgBalance.toLocaleString()} <span style="font-size: 1rem; font-weight: 500;">萬</span>` : `0 <span style="font-size: 1rem; font-weight: 500;">萬</span>`;
+      document.getElementById('stat-avg-monthly').innerHTML = total > 0 ? `${avgMonthly.toLocaleString()} <span style="font-size: 1rem; font-weight: 500;">元</span>` : `0 <span style="font-size: 1rem; font-weight: 500;">元</span>`;
+      document.getElementById('stat-top-region').textContent = topRegion;
+
+      // 渲染表格內容
+      tbody.innerHTML = '';
+      if (total === 0) {
+        emptyState.style.display = 'block';
+        document.getElementById('leadsTable').style.display = 'none';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      document.getElementById('leadsTable').style.display = 'table';
+
+      filtered.forEach(lead => {
+        const tr = document.createElement('tr');
+        
+        // 狀態類別名設定
+        let statusClass = 'pending';
+        if (lead.status === '已聯絡') statusClass = 'contacted';
+        if (lead.status === '規劃中') statusClass = 'planning';
+        if (lead.status === '結案') statusClass = 'completed';
+
+        // 拼接問題 tag
+        const problemTagsHTML = (lead.problems || []).map(p => `<span class="problem-tag">${p}</span>`).join('');
+
+        tr.innerHTML = `
+          <td style="color: var(--text-muted); font-size: 0.85rem; white-space: nowrap;">${lead.formattedTime}</td>
+          <td style="font-weight: 700; color: var(--text-dark);">${lead.name}</td>
+          <td style="font-family: var(--font-en); font-weight: 600;">${lead.phone}</td>
+          <td>${lead.location}</td>
+          <td style="font-family: var(--font-en); font-weight: 700; color: var(--primary);">${lead.balance} 萬</td>
+          <td style="font-family: var(--font-en); font-weight: 700; color: var(--secondary);">${lead.monthly.toLocaleString()} 元</td>
+          <td><div class="problem-tags">${problemTagsHTML}</div></td>
+          <td style="font-size: 0.85rem; color: var(--text-muted);">${lead.contactTime}</td>
+          <td>
+            <div class="status-wrapper">
+              <select class="status-dropdown ${statusClass}" data-id="${lead.id}">
+                <option value="待聯絡" ${lead.status === '待聯絡' ? 'selected' : ''}>待聯絡</option>
+                <option value="已聯絡" ${lead.status === '已聯絡' ? 'selected' : ''}>已聯絡</option>
+                <option value="規劃中" ${lead.status === '規劃中' ? 'selected' : ''}>規劃中</option>
+                <option value="結案" ${lead.status === '結案' ? 'selected' : ''}>結案</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <button class="btn-delete" data-id="${lead.id}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // 註冊表格內事件監聽
+      tbody.querySelectorAll('.status-dropdown').forEach(sel => {
+        sel.addEventListener('change', (e) => {
+          const leadId = e.target.getAttribute('data-id');
+          const newStatus = e.target.value;
+          updateLeadStatus(leadId, newStatus);
+        });
+      });
+
+      tbody.querySelectorAll('.btn-delete').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const leadId = e.currentTarget.getAttribute('data-id');
+          deleteLead(leadId);
+        });
+      });
+    };
+
+    // 7. 匯出 CSV 檔
+    const exportToCsv = () => {
+      if (leadsData.length === 0) {
+        alert("目前沒有可匯出的諮詢紀錄。");
+        return;
+      }
+
+      // CSV 標頭
+      let csvContent = "\uFEFF填寫時間,姓名,手機號碼,房屋所在地,房貸餘額 (萬),每月繳款金額 (元),想改善問題,方便聯絡時間,處理狀態\n";
+
+      leadsData.forEach(lead => {
+        const row = [
+          lead.formattedTime,
+          lead.name,
+          `"${lead.phone}"`, // 防止電話開頭 0 被 Excel 截斷
+          lead.location,
+          lead.balance,
+          lead.monthly,
+          `"${(lead.problems || []).join('、')}"`,
+          lead.contactTime,
+          lead.status
+        ].join(",");
+        csvContent += row + "\n";
+      });
+
+      // 下載機制
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", `房貸減壓諮詢客戶表_${new Date().toISOString().slice(0, 10)}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
+    // 8. 清空所有資料
+    const clearAllLeads = async () => {
+      if (!confirm("確定要清空所有的諮詢紀錄嗎？警告：如果有連接 Firebase 雲端資料庫，您必須手動至 Firebase 控制台刪除 Leads 集合。此按鈕主要用於清除本地 LocalStorage 的測試資料。")) return;
+
+      // 清除本地 LocalStorage
+      localStorage.removeItem("mortgage_leads");
+      console.log("LocalStorage leads cleared.");
+
+      // 重新獲取資料
+      await fetchLeads();
+      alert("LocalStorage 測試資料已清除。");
+    };
+
+    // 9. 註冊控制區事件監聽
+    document.getElementById('searchInput').addEventListener('input', renderDashboard);
+    document.getElementById('filterRegion').addEventListener('change', renderDashboard);
+    document.getElementById('filterStatus').addEventListener('change', renderDashboard);
+    document.getElementById('filterContact').addEventListener('change', renderDashboard);
+    document.getElementById('exportCsvBtn').addEventListener('click', exportToCsv);
+    document.getElementById('clearAllBtn').addEventListener('click', clearAllLeads);
+
+    // 初始化應用程式
+    setupDatabase();
+    await fetchLeads();
+
+  </script>
+</body>
+</html>
