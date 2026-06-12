@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>房貸減壓術 | 活化房產資產，創造彈性現金流，預約免費諮詢</title>
+  <meta name="description" content="你以為房貸只能繳？其實它可以幫你付！提供專業房貸與現金流規劃諮詢，協助您降低每月還款壓力、增加可運用現金流、保留生活品質。">
+  <meta name="keywords" content="房貸減壓, 房貸規劃, 現金流, 資產活化, 房屋貸款, 理財規劃, 降低月付金">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="房貸減壓術 | 活化房產資產，創造彈性現金流">
+  <meta property="og:description" content="你以為房貸只能繳？其實它可以幫你付！協助您重配現金流，降低還款壓力。">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 9.5L12 4L21 9.5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V9.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 21V12H15V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="arrow-up" d="M12 17V13M12 13L10 15M12 13L14 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>房貸減壓術</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#pain-points">面臨痛點</a>
+        <a href="#steps">減壓流程</a>
+        <a href="#advantages">方案優勢</a>
+        <a href="#case-study">實例說明</a>
+        <a href="#consultation-form" class="btn btn-secondary nav-cta">預約諮詢</a>
+      </nav>
+      <button class="mobile-nav-toggle" aria-label="切換選單">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer">
+    <nav class="mobile-nav-links">
+      <a href="#pain-points">面臨痛點</a>
+      <a href="#steps">減壓流程</a>
+      <a href="#advantages">方案優勢</a>
+      <a href="#case-study">實例說明</a>
+      <a href="#consultation-form" class="btn btn-secondary">預約諮詢</a>
+    </nav>
+  </div>
+
+  <main>
+    <!-- 1. Hero Section -->
+    <section class="hero-section">
+      <div class="hero-glow-1"></div>
+      <div class="hero-glow-2"></div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-tag">專業財務規劃諮詢</div>
+          <h1 class="hero-title">
+            <span class="stroke-text">房貸</span>減壓術
+          </h1>
+          <p class="hero-subtitle">你以為房貸只能繳，其實它可以幫你付</p>
+          <p class="hero-description">
+            透過全方位的房貸與現金流規劃，幫您把「不動產」轉化為「靈活財務工具」。不影響信用，合法合規，讓您的資金重獲自由。
+          </p>
+          <div class="hero-buttons">
+            <a href="#steps" class="btn btn-primary">立即了解方案</a>
+            <a href="#consultation-form" class="btn btn-outline">預約免費諮詢</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="illustration-container">
+            <!-- SVG Premium House/Pressure Gauge Illustration -->
+            <svg class="hero-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid Background -->
+              <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(20, 184, 166, 0.07)" stroke-width="1"/>
+                </pattern>
+                <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ef4444"/> <!-- High Pressure (Red) -->
+                  <stop offset="50%" stop-color="#f97316"/> <!-- Medium Pressure (Orange) -->
+                  <stop offset="100%" stop-color="#14b8a6"/> <!-- Low Pressure (Cyan/Green) -->
+                </linearGradient>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="15" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+
+              <!-- Backing Glow for gauge -->
+              <circle cx="250" cy="250" r="140" fill="rgba(20, 184, 166, 0.05)" filter="url(#glow)"/>
+
+              <!-- Interactive Floating Coins -->
+              <g class="floating-coin coin-1">
+                <circle cx="120" cy="120" r="18" fill="#eab308" opacity="0.8"/>
+                <text x="120" y="125" font-family="Outfit" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">$</text>
+              </g>
+              <g class="floating-coin coin-2">
+                <circle cx="380" cy="110" r="22" fill="#eab308" opacity="0.9"/>
+                <text x="380" y="117" font-family="Outfit" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">$</text>
+              </g>
+              <g class="floating-coin coin-3">
+                <circle cx="410" cy="280" r="15" fill="#eab308" opacity="0.7"/>
+                <text x="410" y="285" font-family="Outfit" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">$</text>
+              </g>
+
+              <!-- Central House Graphic -->
+              <g class="hero-house-group">
+                <!-- House Shadow -->
+                <ellipse cx="250" cy="360" rx="90" ry="12" fill="rgba(15, 23, 42, 0.15)"/>
+                <!-- House Body -->
+                <rect x="180" y="240" width="140" height="110" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="4"/>
+                <!-- House Roof -->
+                <path d="M160 240L250 160L340 240" stroke="#f97316" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <!-- Roof Inner Fill -->
+                <path d="M175 236L250 169L325 236H175Z" fill="rgba(249, 115, 22, 0.1)"/>
+                <!-- Door -->
+                <rect x="230" y="290" width="40" height="60" rx="4" fill="#0f172a"/>
+                <circle cx="262" cy="320" r="3" fill="#eab308"/>
+                <!-- Windows -->
+                <rect x="200" y="260" width="30" height="30" rx="6" fill="rgba(20, 184, 166, 0.1)" stroke="#14b8a6" stroke-width="2"/>
+                <line x1="215" y1="260" x2="215" y2="290" stroke="#14b8a6" stroke-width="2"/>
+                <line x1="200" y1="275" x2="230" y2="275" stroke="#14b8a6" stroke-width="2"/>
+
+                <rect x="270" y="260" width="30" height="30" rx="6" fill="rgba(20, 184, 166, 0.1)" stroke="#14b8a6" stroke-width="2"/>
+                <line x1="285" y1="260" x2="285" y2="290" stroke="#14b8a6" stroke-width="2"/>
+                <line x1="270" y1="275" x2="300" y2="275" stroke="#14b8a6" stroke-width="2"/>
+              </g>
+
+              <!-- Pressure Gauge Overlay -->
+              <g class="gauge-group">
+                <!-- Gauge Background Arc -->
+                <path d="M150 250 A 100 100 0 0 1 350 250" fill="none" stroke="url(#gaugeGrad)" stroke-width="14" stroke-linecap="round"/>
+                <!-- Gauge Border -->
+                <path d="M140 250 A 110 110 0 0 1 360 250" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4 4"/>
+                
+                <!-- Center point -->
+                <circle cx="250" cy="250" r="10" fill="#0f172a"/>
+                
+                <!-- Indicator Needle -->
+                <!-- Animate rotation from 0 deg (Red - Left) to 180 deg (Cyan - Right) -->
+                <g class="gauge-needle">
+                  <line x1="250" y1="250" x2="160" y2="250" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+                  <polygon points="160,250 170,245 170,255" fill="#0f172a"/>
+                </g>
+
+                <!-- Pressure Texts -->
+                <text x="135" y="275" font-family="Noto Sans TC" font-size="12" font-weight="bold" fill="#ef4444" text-anchor="middle">重壓</text>
+                <text x="365" y="275" font-family="Noto Sans TC" font-size="12" font-weight="bold" fill="#14b8a6" text-anchor="middle">減壓</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Pain Points Section -->
+    <section id="pain-points" class="section pain-points-section scroll-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">壓力檢視</span>
+          <h2 class="section-title">你是否也有這些房貸壓力？</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="pain-points-grid">
+          <div class="pain-card">
+            <div class="pain-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>每月房貸支出太重</h3>
+            <p>房貸佔據了家庭大半收入，每月扣除房貸後所剩無幾，生活預算被嚴重壓縮。</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 9V7C17 5.67392 16.4732 4.40215 15.5355 3.46447C14.5979 2.52678 13.3261 2 12 2C10.6739 2 9.40215 2.52678 8.46447 3.46447C7.52678 4.40215 7 5.67392 7 7V9M5 9H19C20.1046 9 21 9.89543 21 11V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V11C3 9.89543 3.89543 9 5 9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>薪水進來就被貸款吃掉</h3>
+            <p>辛苦工作賺來的薪水，發薪日一到就自動轉入房貸帳戶，成了名副其實的「房奴」。</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 1V23M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>想理財但現金流卡住</h3>
+            <p>看到好的投資機會或理財規劃，卻因為身邊沒有可動用的預備現金，只能望洋興嘆。</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>繳了多年卻不知如何活化</h3>
+            <p>房貸已經繳了多年，累積了不少已繳本金，但這筆資產一直卡在房子裡無法有效變現利用。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Four Steps Section -->
+    <section id="steps" class="section steps-section scroll-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">實施流程</span>
+          <h2 class="section-title">房貸減壓四步驟</h2>
+          <div class="section-line"></div>
+        </div>
+        
+        <div class="steps-container-layout">
+          <!-- Left: Staircase Graphic (Styled to reference the source image steps layout) -->
+          <div class="steps-visual-side">
+            <div class="staircase-chart">
+              <div class="stair-bar stair-1" data-step="1">
+                <span class="stair-label">步驟 01</span>
+              </div>
+              <div class="stair-bar stair-2" data-step="2">
+                <span class="stair-label">步驟 02</span>
+              </div>
+              <div class="stair-bar stair-3" data-step="3">
+                <span class="stair-label">步驟 03</span>
+              </div>
+              <div class="stair-bar stair-4" data-step="4">
+                <span class="stair-label">步驟 04</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right: Text Description Blocks -->
+          <div class="steps-text-side">
+            <div class="step-item active" data-step="1" id="step1-card">
+              <div class="step-badge step-color-1">
+                <span class="step-num">01</span>
+                <svg class="step-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="step-content">
+                <h3>步驟一：申請諮詢</h3>
+                <p class="step-detail">填寫目前房貸狀況與需求</p>
+                <p class="step-desc">提供您的基本房屋資訊與目前負擔，讓我們能初步評估適合您的財務管道與調配空間。</p>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="2" id="step2-card">
+              <div class="step-badge step-color-2">
+                <span class="step-num">02</span>
+                <svg class="step-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="step-content">
+                <h3>步驟二：專屬報價</h3>
+                <p class="step-detail">協助比較多家銀行條件與可行方案</p>
+                <p class="step-desc">精準媒合各大銀行房貸產品，為您挑選利率優、成數高、寬限期彈性的最佳客製化方案。</p>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="3" id="step3-card">
+              <div class="step-badge step-color-3">
+                <span class="step-num">03</span>
+                <svg class="step-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9 12a3 3 0 106 0 3 3 0 00-6 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="step-content">
+                <h3>步驟三：確認方案</h3>
+                <p class="step-detail">評估額度、利率、月付金與現金流</p>
+                <p class="step-desc">全面審視新方案細節，試算還款降幅與釋出的現金流，確保完美符合您的中長期人生規劃。</p>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="4" id="step4-card">
+              <div class="step-badge step-color-4">
+                <span class="step-num">04</span>
+                <svg class="step-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 7H21M21 7V15M21 7L13 15L9 11L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="step-content">
+                <h3>步驟四：開始減壓</h3>
+                <p class="step-detail">降低每月壓力，重新配置現金流</p>
+                <p class="step-desc">正式啟動方案，大幅削減每月月付金支出。多出來的資金可靈活應用於理財、保障或退休生活。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Advantages Section -->
+    <section id="advantages" class="section advantages-section scroll-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">價值創造</span>
+          <h2 class="section-title">房貸減壓可以帶來什麼？</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="advantages-grid">
+          <div class="advantage-card">
+            <div class="adv-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 14C20.6569 14 22 12.6569 22 11C22 9.34315 20.6569 8 19 8C17.3431 8 16 9.34315 16 11C16 12.6569 17.3431 14 19 14Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 22C13.6569 22 15 20.6569 15 19C15 17.3431 13.6569 16 12 16C10.3431 16 9 17.3431 9 19C9 20.6569 10.3431 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 10C6.65685 10 8 8.65685 8 7C8 5.34315 6.65685 4 5 4C3.34315 4 2 5.34315 2 7C2 8.65685 3.34315 10 5 10Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M6 10L10 16.5M17.5 13.5L13.5 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>降低每月還款壓力</h3>
+            <p>透過合理的年限展延或寬限期配置，大幅度減少每個月要繳給銀行的固定利息與本金，減輕家庭財務重擔。</p>
+          </div>
+
+          <div class="advantage-card">
+            <div class="adv-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 2V4M12 20V22M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M2 12H4M20 12H22M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>增加可運用現金流</h3>
+            <p>原本卡在房貸中的死錢變活錢。每月釋出的可用額度，讓您擁有隨時能夠支配的緊急預備金或流動資產。</p>
+          </div>
+
+          <div class="advantage-card">
+            <div class="adv-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>保留生活品質</h3>
+            <p>不必再為了應付房貸而省吃儉用，孩子教育、家庭休閒、日常娛樂皆可得到妥善照顧，活出自在尊嚴。</p>
+          </div>
+
+          <div class="advantage-card">
+            <div class="adv-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 19V13H15V19M5 19H19V9L12 3L5 9V19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>資產活化為財務工具</h3>
+            <p>房地產不只是冷冰冰的硬體負債，更是能為您創造流動性、在低利率時代套利並對抗通膨的靈活財務槓桿。</p>
+          </div>
+
+          <div class="advantage-card">
+            <div class="adv-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 2 12 22Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>搭配中長期財務規劃</h3>
+            <p>將調整後的資金靈活配置於穩健退休金儲蓄、人身保障防護網，或進行多元化資產投資，全面佈局您的富足人生。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Case Study Section -->
+    <section id="case-study" class="section case-study-section scroll-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">實際案例</span>
+          <h2 class="section-title">規劃成效參考說明</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="case-study-card">
+          <div class="case-badge">規劃實例</div>
+          <div class="case-main">
+            <div class="case-story">
+              <h3>資產活化與重配方案</h3>
+              <p>
+                原本案主每月面臨沉重的房貸支出，家庭現金流緊繃，難以進行其他理財規劃。
+              </p>
+              <p class="highlight-p">
+                透過專業的房貸結構重組、利率條件重新媒合，並優化負債結構後，每月攤還壓力顯著降溫。
+              </p>
+              <p>
+                釋出的彈性額度不僅能作為日常生活預備金，更能靈活配置在案主未來家庭教育、退休儲蓄與基本保險保障，達成平衡而穩健的財務新生活。
+              </p>
+            </div>
+            <div class="case-data">
+              <div class="case-data-box before">
+                <span class="data-label">規劃前</span>
+                <span class="data-value">現金流卡關</span>
+                <p>每月房貸支出佔薪資大半，無多餘預算可理財或保障規劃。</p>
+              </div>
+              <div class="case-data-arrow">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="case-data-box after">
+                <span class="data-label">規劃後</span>
+                <span class="data-value">每月彈性現金流</span>
+                <p>月付金壓力降低，多餘資金可靈活配置於退休、保障與理財。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Form Section -->
+    <section id="consultation-form" class="section form-section scroll-reveal">
+      <div class="container form-wrapper-container">
+        <div class="form-grid">
+          
+          <div class="form-info-side">
+            <h2>開始您的房貸減壓計劃</h2>
+            <p>只需 1 分鐘填寫基本資料，我們將由專業財務顧問為您進行初步分析，量身打造最合適的資產活化方案。</p>
+            
+            <ul class="form-features-list">
+              <li>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>專業財務分析，免費評估管道</span>
+              </li>
+              <li>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>全程資料嚴格保密，安全無虞</span>
+              </li>
+              <li>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>不綁約、無隱藏收費、安心諮詢</span>
+              </li>
+            </ul>
+
+            <!-- Visual trust elements -->
+            <div class="trust-badge">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" fill="rgba(20, 184, 166, 0.1)" stroke="#14b8a6" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M9 11L11 13L15 9" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <h4>個人資料隱私安全保障</h4>
+                <p>本網站採用 SSL 加密技術，您的所有個人資料僅用於本次房貸減壓諮詢規劃評估。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-card-side">
+            <form id="reliefForm" novalidate>
+              
+              <div class="form-group-row">
+                <div class="form-group" id="group-name">
+                  <label for="name">您的姓名 <span class="required">*</span></label>
+                  <input type="text" id="name" name="name" required placeholder="例如：陳先生 / 林小姐">
+                  <span class="error-msg">請填寫您的姓名</span>
+                </div>
+
+                <div class="form-group" id="group-phone">
+                  <label for="phone">手機號碼 <span class="required">*</span></label>
+                  <input type="tel" id="phone" name="phone" required pattern="^09[0-9]{8}$" placeholder="例如：0912345678">
+                  <span class="error-msg">請填寫正確的手機格式 (09開頭共10碼)</span>
+                </div>
+              </div>
+
+              <div class="form-group" id="group-location">
+                <label for="location">房屋所在地 <span class="required">*</span></label>
+                <div class="select-wrapper">
+                  <select id="location" name="location" required>
+                    <option value="" disabled selected>請選擇縣市區域</option>
+                    <optgroup label="北部地區">
+                      <option value="台北市">台北市</option>
+                      <option value="新北市">新北市</option>
+                      <option value="桃園市">桃園市</option>
+                      <option value="基隆市">基隆市</option>
+                      <option value="新竹市">新竹市</option>
+                      <option value="新竹縣">新竹縣</option>
+                      <option value="宜蘭縣">宜蘭縣</option>
+                    </optgroup>
+                    <optgroup label="中部地區">
+                      <option value="台中市">台中市</option>
+                      <option value="苗栗縣">苗栗縣</option>
+                      <option value="彰化縣">彰化縣</option>
+                      <option value="南投縣">南投縣</option>
+                      <option value="雲林縣">雲林縣</option>
+                    </optgroup>
+                    <optgroup label="南部地區">
+                      <option value="高雄市">高雄市</option>
+                      <option value="台南市">台南市</option>
+                      <option value="嘉義市">嘉義市</option>
+                      <option value="嘉義縣">嘉義縣</option>
+                      <option value="屏東縣">屏東縣</option>
+                    </optgroup>
+                    <optgroup label="東部及離島">
+                      <option value="花蓮縣">花蓮縣</option>
+                      <option value="台東縣">台東縣</option>
+                      <option value="澎湖/金門/馬祖">澎湖 / 金門 / 馬祖</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <span class="error-msg">請選擇房屋所在地縣市</span>
+              </div>
+
+              <div class="form-group-row">
+                <div class="form-group" id="group-balance">
+                  <label for="balance">目前房貸餘額 (約略值) <span class="required">*</span></label>
+                  <div class="input-unit-wrapper">
+                    <input type="number" id="balance" name="balance" min="0" required placeholder="例如：800">
+                    <span class="unit">萬元</span>
+                  </div>
+                  <span class="error-msg">請填寫正整數餘額</span>
+                </div>
+
+                <div class="form-group" id="group-monthly">
+                  <label for="monthly">每月繳款金額 (約略值) <span class="required">*</span></label>
+                  <div class="input-unit-wrapper">
+                    <input type="number" id="monthly" name="monthly" min="0" required placeholder="例如：35000">
+                    <span class="unit">元</span>
+                  </div>
+                  <span class="error-msg">請填寫正整數月付金額</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>想改善的問題 (可複選) <span class="required">*</span></label>
+                <div class="checkbox-grid" id="problem-checkboxes">
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="problems" value="每月房貸負擔太重">
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-text">每月房貸負擔太重</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="problems" value="薪水大半繳給房貸">
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-text">薪水大半繳給房貸</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="problems" value="想理財但沒有現金流">
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-text">想理財但沒有現金流</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="problems" value="想了解房貸資產活化">
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-text">想了解房貸資產活化</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="problems" value="其他問題">
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-text">其他財務配置規劃</span>
+                  </label>
+                </div>
+                <span class="error-msg checkbox-error">請至少勾選一項想改善的問題</span>
+              </div>
+
+              <div class="form-group" id="group-contact-time">
+                <label for="contactTime">方便聯絡時間 <span class="required">*</span></label>
+                <div class="select-wrapper">
+                  <select id="contactTime" name="contactTime" required>
+                    <option value="" disabled selected>請選擇時段</option>
+                    <option value="隨時皆可">隨時皆可</option>
+                    <option value="上午 (09:00 - 12:00)">上午 (09:00 - 12:00)</option>
+                    <option value="中午 (12:00 - 14:00)">中午 (12:00 - 14:00)</option>
+                    <option value="下午 (14:00 - 18:00)">下午 (14:00 - 18:00)</option>
+                    <option value="晚上 (18:00 - 21:00)">晚上 (18:00 - 21:00)</option>
+                  </select>
+                </div>
+                <span class="error-msg">請選擇您方便的聯絡時段</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block submit-btn">
+                <span>預約房貸減壓諮詢</span>
+                <svg class="loading-spinner" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"></circle>
+                  <path d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" fill="currentColor"></path>
+                </svg>
+              </button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Disclaimer / Footnote -->
+    <section class="disclaimer-section">
+      <div class="container">
+        <div class="disclaimer-box">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 9V11M12 15H12.01M5.07183 19H18.9282C20.4678 19 21.4301 17.3333 20.6603 16L13.7321 4C12.9623 2.66667 11.0378 2.66667 10.268 4L3.33978 16C2.56998 17.3333 3.53223 19 5.07183 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>
+            <strong>注意事項：</strong>本服務為房貸與現金流規劃諮詢，實際條件仍需依銀行審核、個人信用、房屋條件與財力證明為準。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Success Modal Overlay -->
+  <div class="modal-overlay" id="successModal">
+    <div class="success-modal">
+      <div class="success-circle-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>諮詢預約成功</h2>
+      <p class="modal-message">已收到您的諮詢需求，我們將盡快與您聯繫。</p>
+      <button class="btn btn-primary" id="closeModalBtn">確認</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <p class="copyright">&copy; 2026 房貸減壓術. 版權所有. 僅供諮詢規劃示範使用。</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

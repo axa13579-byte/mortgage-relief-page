@@ -1,0 +1,15 @@
+{
+  "name": "mortgage-relief-page",
+  "version": "1.0.0",
+  "description": "Mortgage relief landing page",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p ${PORT:-8080}"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
