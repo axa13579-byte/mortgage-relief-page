@@ -686,9 +686,8 @@ h1, h2, h3, h4 {
 }
 
 .stair-bar .stair-label {
-  writing-mode: vertical-lr;
-  text-orientation: mixed;
-  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
   letter-spacing: 0.05em;
   opacity: 0.85;
 }
