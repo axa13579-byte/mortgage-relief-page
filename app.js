@@ -2,9 +2,6 @@
    房貸減壓術 - Javascript Application Logic
    ========================================================================== */
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
 // ==========================================
 // 0. Firebase Configuration & Fallback Setup
 // ==========================================
@@ -24,8 +21,8 @@ let isFirebaseEnabled = false;
 // 驗證 Firebase 設定是否填寫
 if (firebaseConfig.projectId && firebaseConfig.projectId !== "") {
   try {
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
     isFirebaseEnabled = true;
     console.log("Firebase Firestore 雲端資料庫初始化成功！");
   } catch (error) {
@@ -41,8 +38,8 @@ const saveLead = async (leadData) => {
 
   if (isFirebaseEnabled && db) {
     try {
-      leadData.timestamp = serverTimestamp(); // 寫入伺服器時間戳記
-      await addDoc(collection(db, "leads"), leadData);
+      leadData.timestamp = firebase.firestore.FieldValue.serverTimestamp(); // 寫入伺服器時間戳記
+      await db.collection("leads").add(leadData);
       console.log("資料已成功寫入 Firebase Firestore 雲端資料庫！");
       return true;
     } catch (error) {

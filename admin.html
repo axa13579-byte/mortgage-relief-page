@@ -196,19 +196,11 @@
   </main>
 
   <!-- Firebase Script Integration -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { 
-      getFirestore, 
-      collection, 
-      getDocs, 
-      updateDoc, 
-      deleteDoc, 
-      doc, 
-      query, 
-      orderBy 
-    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <!-- Firebase Firestore -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script>
     // 💡 Firebase Configuration (Replace with your actual keys)
     const firebaseConfig = {
       apiKey: "AIzaSyBgcx05ElIGF1qseIryeasXxOgS6KYNtVU",
@@ -230,8 +222,8 @@
 
       if (firebaseConfig.projectId && firebaseConfig.projectId !== "") {
         try {
-          const app = initializeApp(firebaseConfig);
-          db = getFirestore(app);
+          firebase.initializeApp(firebaseConfig);
+          db = firebase.firestore();
           isFirebaseEnabled = true;
 
           banner.classList.add('firebase-active');
@@ -257,8 +249,7 @@
       leadsData = [];
       if (isFirebaseEnabled && db) {
         try {
-          const q = query(collection(db, "leads"), orderBy("timestamp", "desc"));
-          const querySnapshot = await getDocs(q);
+          const querySnapshot = await db.collection("leads").orderBy("timestamp", "desc").get();
           querySnapshot.forEach((document) => {
             const data = document.data();
             let formattedTime = "未知時間";
@@ -304,8 +295,7 @@
     const updateLeadStatus = async (leadId, newStatus) => {
       if (isFirebaseEnabled && db && !leadId.startsWith('local-')) {
         try {
-          const leadRef = doc(db, "leads", leadId);
-          await updateDoc(leadRef, { status: newStatus });
+          await db.collection("leads").doc(leadId).update({ status: newStatus });
           console.log("Firestore status updated:", newStatus);
         } catch (error) {
           console.error("Firestore update error:", error);
@@ -332,7 +322,7 @@
 
       if (isFirebaseEnabled && db && !leadId.startsWith('local-')) {
         try {
-          await deleteDoc(doc(db, "leads", leadId));
+          await db.collection("leads").doc(leadId).delete();
         } catch (error) {
           console.error("Firestore delete error:", error);
         }
@@ -534,7 +524,7 @@
     document.getElementById('clearAllBtn').addEventListener('click', clearAllLeads);
 
     setupDatabase();
-    await fetchLeads();
+    fetchLeads().catch(console.error);
   </script>
 </body>
 </html>
