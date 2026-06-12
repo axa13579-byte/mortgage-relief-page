@@ -36,21 +36,23 @@ if (firebaseConfig.projectId && firebaseConfig.projectId !== "") {
 const saveLead = async (leadData) => {
   leadData.status = "待聯絡"; // 預設諮詢狀態為「待聯絡」
 
+  // 1. 總是儲存一份至 LocalStorage 作為本地備份
+  saveToLocalStorage(leadData);
+
+  // 2. 如果啟用 Firebase，同時寫入雲端
   if (isFirebaseEnabled && db) {
     try {
-      leadData.timestamp = firebase.firestore.FieldValue.serverTimestamp(); // 寫入伺服器時間戳記
-      await db.collection("leads").add(leadData);
+      const cloudData = { ...leadData };
+      cloudData.timestamp = firebase.firestore.FieldValue.serverTimestamp(); // 寫入伺服器時間戳記
+      await db.collection("leads").add(cloudData);
       console.log("資料已成功寫入 Firebase Firestore 雲端資料庫！");
       return true;
     } catch (error) {
-      console.error("雲端寫入發生錯誤，切換至本地儲存備用：", error);
-      saveToLocalStorage(leadData);
+      console.error("雲端寫入發生錯誤：", error);
       return false;
     }
-  } else {
-    saveToLocalStorage(leadData);
-    return false;
   }
+  return false;
 };
 
 // 本地暫存備用方案

@@ -247,39 +247,12 @@
 
     const fetchLeads = async () => {
       leadsData = [];
-      if (isFirebaseEnabled && db) {
-        try {
-          const querySnapshot = await db.collection("leads").orderBy("timestamp", "desc").get();
-          querySnapshot.forEach((document) => {
-            const data = document.data();
-            let formattedTime = "未知時間";
-            if (data.timestamp) {
-              const date = data.timestamp.toDate ? data.timestamp.toDate() : new Date(data.timestamp);
-              formattedTime = date.toLocaleString('zh-TW');
-            }
-            leadsData.push({
-              id: document.id,
-              ...data,
-              formattedTime
-            });
-          });
-        } catch (error) {
-          console.error("Firestore read error, falling back:", error);
-          loadLeadsFromLocal();
-        }
-      } else {
-        loadLeadsFromLocal();
-      }
-      
-      updateFilters();
-      renderDashboard();
-    };
+      let firestoreLeads = [];
+      let localLeads = [];
 
-    const loadLeadsFromLocal = () => {
+      // 1. 讀取本地 LocalStorage 資料作備份/本地資料顯示
       const localData = JSON.parse(localStorage.getItem("mortgage_leads") || "[]");
-      localData.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-      
-      leadsData = localData.map((lead, index) => {
+      localLeads = localData.map((lead, index) => {
         let formattedTime = "未知時間";
         if (lead.timestamp) {
           formattedTime = new Date(lead.timestamp).toLocaleString('zh-TW');
@@ -290,9 +263,58 @@
           formattedTime
         };
       });
+
+      // 2. 嘗試讀取 Cloud Firestore 資料
+      if (isFirebaseEnabled && db) {
+        try {
+          const querySnapshot = await db.collection("leads").orderBy("timestamp", "desc").get();
+          querySnapshot.forEach((document) => {
+            const data = document.data();
+            let formattedTime = "未知時間";
+            if (data.timestamp) {
+              const date = data.timestamp.toDate ? data.timestamp.toDate() : new Date(data.timestamp);
+              formattedTime = date.toLocaleString('zh-TW');
+            }
+            firestoreLeads.push({
+              id: document.id,
+              ...data,
+              formattedTime
+            });
+          });
+        } catch (error) {
+          console.error("Firestore read error, using local leads only:", error);
+        }
+      }
+
+      // 3. 合併資料並去重 (以電話 + 姓名做唯一識別，避免重複顯示)
+      const combined = [...firestoreLeads];
+      localLeads.forEach(localLead => {
+        const isDuplicate = combined.some(
+          lead => lead.phone === localLead.phone && lead.name === localLead.name
+        );
+        if (!isDuplicate) {
+          combined.push(localLead);
+        }
+      });
+
+      // 4. 依照時間戳記降序排列
+      combined.sort((a, b) => {
+        const timeA = a.timestamp && a.timestamp.toDate ? a.timestamp.toDate() : new Date(a.timestamp || 0);
+        const timeB = b.timestamp && b.timestamp.toDate ? b.timestamp.toDate() : new Date(b.timestamp || 0);
+        return timeB - timeA;
+      });
+
+      leadsData = combined;
+      updateFilters();
+      renderDashboard();
     };
 
     const updateLeadStatus = async (leadId, newStatus) => {
+      const idx = leadsData.findIndex(l => l.id === leadId);
+      if (idx === -1) return;
+      const targetLead = leadsData[idx];
+
+      // 1. 更新 Firestore 狀態
       if (isFirebaseEnabled && db && !leadId.startsWith('local-')) {
         try {
           await db.collection("leads").doc(leadId).update({ status: newStatus });
@@ -300,42 +322,42 @@
         } catch (error) {
           console.error("Firestore update error:", error);
         }
-      } else {
-        const localLeads = JSON.parse(localStorage.getItem("mortgage_leads") || "[]");
-        const idx = leadsData.findIndex(l => l.id === leadId);
-        if (idx !== -1) {
-          const localIdx = localLeads.findIndex(l => l.phone === leadsData[idx].phone && l.name === leadsData[idx].name);
-          if (localIdx !== -1) {
-            localLeads[localIdx].status = newStatus;
-            localStorage.setItem("mortgage_leads", JSON.stringify(localLeads));
-          }
-        }
+      }
+
+      // 2. 同步更新 LocalStorage 中的狀態
+      const localLeads = JSON.parse(localStorage.getItem("mortgage_leads") || "[]");
+      const localIdx = localLeads.findIndex(l => l.phone === targetLead.phone && l.name === targetLead.name);
+      if (localIdx !== -1) {
+        localLeads[localIdx].status = newStatus;
+        localStorage.setItem("mortgage_leads", JSON.stringify(localLeads));
       }
       
-      const lead = leadsData.find(l => l.id === leadId);
-      if (lead) lead.status = newStatus;
+      targetLead.status = newStatus;
       renderDashboard();
     };
 
     const deleteLead = async (leadId) => {
       if (!confirm("確定要刪除此筆諮詢紀錄嗎？此動作無法復原。")) return;
 
+      const idx = leadsData.findIndex(l => l.id === leadId);
+      if (idx === -1) return;
+      const targetLead = leadsData[idx];
+
+      // 1. 從 Firestore 刪除 (如果是雲端資料)
       if (isFirebaseEnabled && db && !leadId.startsWith('local-')) {
         try {
           await db.collection("leads").doc(leadId).delete();
         } catch (error) {
           console.error("Firestore delete error:", error);
         }
-      } else {
-        const localLeads = JSON.parse(localStorage.getItem("mortgage_leads") || "[]");
-        const idx = leadsData.findIndex(l => l.id === leadId);
-        if (idx !== -1) {
-          const localIdx = localLeads.findIndex(l => l.phone === leadsData[idx].phone && l.name === leadsData[idx].name);
-          if (localIdx !== -1) {
-            localLeads.splice(localIdx, 1);
-            localStorage.setItem("mortgage_leads", JSON.stringify(localLeads));
-          }
-        }
+      }
+
+      // 2. 從 LocalStorage 刪除 (確保相符資料被清除，防止重複出現)
+      const localLeads = JSON.parse(localStorage.getItem("mortgage_leads") || "[]");
+      const localIdx = localLeads.findIndex(l => l.phone === targetLead.phone && l.name === targetLead.name);
+      if (localIdx !== -1) {
+        localLeads.splice(localIdx, 1);
+        localStorage.setItem("mortgage_leads", JSON.stringify(localLeads));
       }
 
       await fetchLeads();
