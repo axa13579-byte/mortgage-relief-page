@@ -1704,3 +1704,113 @@ h1, h2, h3, h4 {
     padding: 1.25rem;
   }
 }
+
+/* ==========================================
+   Suitable Target Groups Section Styling
+   ========================================== */
+.suitable-groups-card {
+  background-color: var(--bg-card);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-top: 2.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: var(--shadow-md);
+}
+
+.suitable-groups-card h3 {
+  font-size: 1.35rem;
+  color: var(--text-dark);
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.suitable-groups-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 2px;
+}
+
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.group-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  transition: var(--transition-smooth);
+}
+
+.group-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(20, 184, 166, 0.3);
+  box-shadow: 0 10px 20px rgba(20, 184, 166, 0.05);
+}
+
+.group-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: rgba(20, 184, 166, 0.08);
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  transition: var(--transition-smooth);
+}
+
+.group-card:hover .group-icon {
+  background-color: var(--secondary);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.group-icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.group-content h4 {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin: 0 0 0.75rem 0;
+  font-weight: 700;
+}
+
+.group-content p {
+  font-size: 0.925rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Mobile responsive for suitable target groups card */
+@media (max-width: 768px) {
+  .groups-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .suitable-groups-card {
+    padding: 1.75rem;
+    margin-top: 2rem;
+  }
+}
