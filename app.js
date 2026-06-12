@@ -10,12 +10,12 @@ import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.g
 // ==========================================
 // 💡 請在此處填入您的 Firebase 設定以啟動雲端同步功能！
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyBgcx05ElIGF1qseIryeasXxOgS6KYNtVU",
+  authDomain: "haunches-307a4.firebaseapp.com",
+  projectId: "haunches-307a4",
+  storageBucket: "haunches-307a4.firebasestorage.app",
+  messagingSenderId: "424240069442",
+  appId: "1:424240069442:web:5d5cd2d9892432495626db"
 };
 
 let db = null;
