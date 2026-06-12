@@ -686,10 +686,30 @@ h1, h2, h3, h4 {
 }
 
 .stair-bar .stair-label {
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  letter-spacing: 0.05em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
   opacity: 0.85;
+  transition: var(--transition-smooth);
+}
+
+.stair-bar .stair-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0.9;
+  margin-bottom: 2px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.stair-bar .stair-number {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.05em;
 }
 
 /* Heights and colors */
@@ -1666,7 +1686,14 @@ h1, h2, h3, h4 {
   
   .stair-bar {
     padding-bottom: 1rem;
-    font-size: 0.75rem;
+  }
+
+  .stair-bar .stair-text {
+    font-size: 0.65rem;
+  }
+
+  .stair-bar .stair-number {
+    font-size: 1.15rem;
   }
   
   .checkbox-grid {
